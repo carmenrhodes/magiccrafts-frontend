@@ -1,68 +1,341 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --lavender: #e6d9ff;
+  --deep-purple: #5a2d82;
+  --aqua: #7fdde7;
+  --soft-pink: #ffd6ec;
+  --bg-soft: #fef9ff;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --font-cute: "Crafty Girls", cursive;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --card-radius: 18px;
+  --shadow-soft: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: var(--font-body);
+  background: linear-gradient(180deg, var(--lavender), var(--soft-pink));
+  color: #2b2038;
+}
+
+/* APP SHELL */
+
+.app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* HEADER / NAV */
+
+.mc-header {
+  background: linear-gradient(
+    135deg,
+    var(--deep-purple),
+    var(--lavender),
+    var(--aqua)
+  );
+  color: white;
+  padding: 1.5rem 1rem 1.1rem;
+  text-align: center;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 0 6px 18px rgba(90, 45, 130, 0.25);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.mc-logo {
+  position: relative;            /* NEW: needed for the sparkle */
+  display: inline-block;
+  padding-inline: 0.4rem;        /* gives room for the sparkle */
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  font-family: var(--font-cute);
+  text-shadow:
+    1px 1px 0 #ffffff,
+    2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.mc-tagline {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  opacity: 1;
+  color: #3a235a;     
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.mc-nav {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mc-nav a {
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: #ffffffcc;
+  color: var(--deep-purple);
+  border: 2px solid #ffffff;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.mc-nav a:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+/* LAYOUT */
+
+.mc-main {
+  padding: 1.75rem 1.25rem 2.5rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* HERO / ABOUT */
+
+.mc-hero h1 {
+  font-family: var(--font-cute);
+  font-size: 1.9rem;
+  margin: 0 0 0.5rem;
+}
+
+.mc-hero p {
+  max-width: 560px;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* MAKERS SECTION */
+
+.mc-makers {
+  margin-top: 2rem;
+}
+
+.mc-makers h2 {
+  font-family: var(--font-cute);
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.mc-maker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.mc-maker-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mc-maker-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.18);
+}
+
+.mc-maker-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.45rem;
+}
+
+.mc-maker-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffffaa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.mc-maker-card h3 {
+  font-family: var(--font-cute);
+  font-size: 1.4rem;
+  margin: 0;                
+}
+
+/* Per-girl backgrounds */
+.maker-1 {
+  background: linear-gradient(180deg, var(--lavender), #ffffff);
+}
+
+.maker-2 {
+  background: linear-gradient(180deg, var(--deep-purple), #ffffff);
+  color: #fdf7ff;
+}
+
+.maker-3 {
+  background: linear-gradient(180deg, var(--aqua), #ffffff);
+}
+
+.mc-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--deep-purple);
+  text-decoration: none;
+}
+
+.maker-2 .mc-link {
+  color: #2b2038;
+}
+
+.mc-link:hover {
+  text-decoration: underline;
+}
+
+/* SHOP SECTION */
+
+.mc-shop h2 {
+  font-family: var(--font-cute);
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.mc-status {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.mc-status-error {
+  color: #b3261e;
+}
+
+/* PRODUCT GRID */
+
+.mc-product-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.mc-product-card {
+  background: #fffdfd; /* slightly warm white */
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* softer shadow */
+  border: 1px solid rgba(255, 255, 255, 0.9); /* light outline */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.mc-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12); /* still soft, less harsh */
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.mc-product-image {
+  height: 180px;
+  background: linear-gradient(135deg, var(--lavender), var(--aqua));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cute);
+  font-size: 1.1rem;
+  color: white;
+}
+
+.mc-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mc-placeholder {
+  padding: 1rem;
+}
+
+.mc-product-body {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.mc-product-body h3 {
+  margin: 0 0 0.3rem;
+  font-weight: 600;
+}
+
+.mc-product-creator {
+  margin: 0 0 0.4rem;
+  font-size: 0.88rem;
+  color: #5a4b72;
+}
+
+.mc-product-creator span {
+  font-weight: 600;
+}
+
+.mc-product-description {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+}
+
+.mc-product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.mc-price {
+  font-weight: 700;
+  color: var(--deep-purple);
+}
+
+.mc-pill {
+  font-size: 0.78rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: var(--lavender);
+  color: var(--deep-purple);
+}
+
+.mc-qty {
+  margin: 0;
+  font-size: 0.83rem;
+  color: #5a4b72;
+}
+
+/* FOOTER */
+
+.mc-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: #5a4b72;
+}
+
+/* RESPONSIVE TWEAKS */
+
+@media (min-width: 720px) {
+  .mc-main {
+    padding-inline: 2rem;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media (min-width: 1024px) {
+  .mc-main {
+    padding-inline: 0;
   }
 }
